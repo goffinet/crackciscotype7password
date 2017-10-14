@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>			<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->	<html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Cisco Type 7 Password Cracker</title>
+		<meta name="description" content="Cisco Type 7 Password cracker">
+
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" href="resources/css/main.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+	</head>
+	<body>
+
+		<div class="header-container">
+			<header class="wrapper clearfix">
+				<h1 class="title">Cisco Type 7 Password Cracker</h1>
+			</header>
+		</div>
+
+		<div class="main-container">
+			<div class="main wrapper clearfix">
+
+				<article>
+					<header>
+						<h1>Crack Cisco Type 7 Password</h1>
+						<p>Use these tools to crack Cisco Type 7 Password. Source at <a href='https://eikonal.wordpress.com/2010/01/07/cisco-password-cracker-javascript-code/'>GitHub</a>.</p>
+						<header>
+
+					<section>
+<!--https://eikonal.wordpress.com/2010/01/07/cisco-password-cracker-javascript-code/-->
+
+<script language="JavaScript1.2" type="text/javascript">
+<!--
+// Is the character a digit?
+function isDigit(theDigit)
+{
+    var digitArray = new Array('0','1','2','3','4','5','6','7','8','9')
+
+    for (j = 0; j < digitArray.length; j++)  {
+        if (theDigit == digitArray[j])
+            return true
+    }
+    return false
+}
+
+
+// Generate a config file ready for loading
+function crackPassword(form)
+{
+    var crypttext=form.crypttext.value.toUpperCase()
+    var plaintext=''
+    var xlat="dsfd;kfoA,.iyewrkldJKDHSUBsgvca69834ncxv9873254k;fg87"
+    var seed, i, val=0
+
+    if(crypttext.length & 1)
+        return
+
+    seed = (crypttext.charCodeAt(0) - 0x30) * 10 + crypttext.charCodeAt(1) - 0x30
+
+    if (seed > 15 || !isDigit(crypttext.charAt(0)) || !isDigit(crypttext.charAt(1)))
+        return
+
+        for (i = 2 ; i <= crypttext.length; i++) {
+                if(i !=2 && !(i & 1)) {
+                        plaintext+=String.fromCharCode(val ^ xlat.charCodeAt(seed++))
+            seed%=xlat.length
+                        val = 0;
+                }
+
+                val *= 16
+
+        if(isDigit(crypttext.charAt(i))) {
+            val += crypttext.charCodeAt(i) - 0x30
+            continue
+        }
+
+
+        if(crypttext.charCodeAt(i) >= 0x41 && crypttext.charCodeAt(i) <= 0x46) {
+            val += crypttext.charCodeAt(i) - 0x41 + 0x0a
+            continue
+        }
+
+        if(crypttext.length != i)
+            return
+        }
+
+    form.plaintext.value=plaintext
+}
+
+-->
+</script>
+
+<form name="never-you-mind" id="never-you-mind" action="#" class='calculator'>
+<p>
+Type 7 Password:
+  <input name="crypttext" size="60" type="text">
+</p>
+
+<p>
+  <input value="Crack Password" onclick="crackPassword(this.form)" type="button">
+</p>
+<p>Plain text:
+  <input name="plaintext" size="40" type="text">
+</p>
+</form>
+					</section>
+
+				</article>
+
+			</div> <!-- #main -->
+		</div> <!-- #main-container -->
+
+		<div class="footer-container">
+			<footer class="wrapper">
+				<h3>Source at GitHub: <a href='https://github.com/goffinet/crackciscotype7password'>Crack Cisco Type 7 Password</a></h3>
+			</footer>
+		</div>
+
+	</body>
+</html>
