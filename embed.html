@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-default.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Cisco Type 7 Password Cracker</title>
+  <meta name="description" content="Cisco Type 7 Password cracker">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21733018-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21733018-5');
+</script>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="row cols-sm-12 cols-md-10">
+    <div class="col-md-offset-1">
+<script language="JavaScript1.2" type="text/javascript">
+<!--
+// Is the character a digit?
+function isDigit(theDigit)
+{
+    var digitArray = new Array('0','1','2','3','4','5','6','7','8','9')
+
+    for (j = 0; j < digitArray.length; j++)  {
+        if (theDigit == digitArray[j])
+            return true
+    }
+    return false
+}
+
+
+// Generate a config file ready for loading
+function crackPassword(form)
+{
+    var crypttext=form.crypttext.value.toUpperCase()
+    var plaintext=''
+    var xlat="dsfd;kfoA,.iyewrkldJKDHSUBsgvca69834ncxv9873254k;fg87"
+    var seed, i, val=0
+
+    if(crypttext.length & 1)
+        return
+
+    seed = (crypttext.charCodeAt(0) - 0x30) * 10 + crypttext.charCodeAt(1) - 0x30
+
+    if (seed > 15 || !isDigit(crypttext.charAt(0)) || !isDigit(crypttext.charAt(1)))
+        return
+
+        for (i = 2 ; i <= crypttext.length; i++) {
+                if(i !=2 && !(i & 1)) {
+                        plaintext+=String.fromCharCode(val ^ xlat.charCodeAt(seed++))
+            seed%=xlat.length
+                        val = 0;
+                }
+
+                val *= 16
+
+        if(isDigit(crypttext.charAt(i))) {
+            val += crypttext.charCodeAt(i) - 0x30
+            continue
+        }
+
+
+        if(crypttext.charCodeAt(i) >= 0x41 && crypttext.charCodeAt(i) <= 0x46) {
+            val += crypttext.charCodeAt(i) - 0x41 + 0x0a
+            continue
+        }
+
+        if(crypttext.length != i)
+            return
+        }
+
+    form.plaintext.value=plaintext
+}
+
+-->
+</script>
+
+<form name="never-you-mind" id="never-you-mind" action="#">
+<p>
+Type 7 Password:
+  <input name="crypttext" size="60" type="text">
+</p>
+
+<p>
+  <input value="Crack Password" onclick="crackPassword(this.form)" type="button">
+</p>
+<p>Plain text:
+  <input name="plaintext" size="40" type="text">
+</p>
+</form>
+      <p></p> <br />
+    </div>
+  </div>
+</div>
+</body>
+</html>
